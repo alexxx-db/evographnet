@@ -66,9 +66,10 @@ class MRDataset(InMemoryDataset):
         """
         subs = None  # Subjects
 
-        #data_path = "../data"
+        # data_path = "../data"
         # data_path = "../DATA_prep/data_Tau_long"
-        data_path = "/dbfs/mnt/POC-data-science/DPM_DL/EvoGraphNet/DATA_prep/data_Tau_long"
+        # data_path = "/dbfs/mnt/POC-data-science/DPM_DL/EvoGraphNet/DATA_prep/data_Tau_long"
+        data_path = "/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/DATA_prep/data_Tau_long"
         for i in range(1, nbr_of_subs):
             s = data_path + "/cortical." + h.lower() + ".ShapeConnectivityTensor_OAS2_"
             if i < 10:
@@ -151,9 +152,10 @@ class MRDataset2(InMemoryDataset):
         """
         subs = None  # Subjects
 
-        #data_path = "../data"
+        # data_path = "../data"
         # data_path = "../DATA_prep/data_Tau_long"
-        data_path = "/dbfs/mnt/POC-data-science/DPM_DL/EvoGraphNet/DATA_prep/data_Tau_long"
+        # data_path = "/dbfs/mnt/POC-data-science/DPM_DL/EvoGraphNet/DATA_prep/data_Tau_long"
+        data_path = "/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/DATA_prep/data_Tau_long"
 
         for i in range(1, nbr_of_subs):
             s = data_path + "/cortical." + h.lower() + ".ShapeConnectivityTensor_OAS2_"
@@ -264,17 +266,17 @@ def cross_val_indices(folds, num_samples, new=False):
     try:
         if new == True:
             raise IOError
-        with open("/Workspace/Shared/EvoGraphNet/data/" + str(folds) + "_" + str(num_samples) + "cv_train", "rb") as f:
+        with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/data/" + str(folds) + "_" + str(num_samples) + "cv_train", "rb") as f:
             train_indices = pickle.load(f)
-        with open("/Workspace/Shared/EvoGraphNet/data/" + str(folds) + "_" + str(num_samples) + "cv_val", "rb") as f:
+        with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/data/" + str(folds) + "_" + str(num_samples) + "cv_val", "rb") as f:
             val_indices = pickle.load(f)
     except IOError:
         for tr_index, val_index in kf.split(np.zeros((num_samples, 1))):
             train_indices.append(tr_index)
             val_indices.append(val_index)
-        with open("/Workspace/Shared/EvoGraphNet/data/" + str(folds) + "_" + str(num_samples) + "cv_train", "wb") as f:
+        with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/data/" + str(folds) + "_" + str(num_samples) + "cv_train", "wb") as f:
             pickle.dump(train_indices, f)
-        with open("/Workspace/Shared/EvoGraphNet/data/" + str(folds) + "_" + str(num_samples) + "cv_val", "wb") as f:
+        with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/data/" + str(folds) + "_" + str(num_samples) + "cv_val", "wb") as f:
             pickle.dump(val_indices, f)
 
     return train_indices, val_indices
