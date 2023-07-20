@@ -60,7 +60,7 @@ opt = parser.parse_args()
 
 # Datasets
 
-h_data = MRDataset2("../data", "lh", subs=989)
+h_data = MRDataset2("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/data", "lh", subs=989)
 
 # Parameters
 
@@ -492,12 +492,12 @@ for fold in range(folds):
         gan2_val_s = np.vstack([gan2_val_s, gan_losses_2_val])
 
         # Save the models
-        torch.save(generator.state_dict(), "../weights/generator_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
-        torch.save(discriminator.state_dict(), "../weights/discriminator_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
+        torch.save(generator.state_dict(), "/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/weights/generator_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
+        torch.save(discriminator.state_dict(), "/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/weights/discriminator_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
         torch.save(generator2.state_dict(),
-                   "../weights/generator2_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
+                   "/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/weights/generator2_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
         torch.save(discriminator2.state_dict(),
-                   "../weights/discriminator2_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
+                   "/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/weights/discriminator2_" + str(fold) + "_" + str(epoch) + "_" + str(opt.exp))
 
     del generator
     del discriminator
@@ -506,57 +506,57 @@ for fold in range(folds):
     del discriminator2
 
 # Save losses
-with open("../losses/G_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/G_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gen_mae_losses_tr, f)
-with open("../losses/G_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/G_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gen_mae_losses_val, f)
-with open("../losses/D_TrainRealLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D_TrainRealLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_real_losses_tr, f)
-with open("../losses/D_TrainFakeLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D_TrainFakeLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_fake_losses_tr, f)
-with open("../losses/D_ValRealLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D_ValRealLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_real_losses_val, f)
-with open("../losses/D_ValFakeLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D_ValFakeLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_fake_losses_val, f)
-with open("../losses/G2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/G2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gen_mae_losses_tr2, f)
-with open("../losses/G2_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/G2_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gen_mae_losses_val2, f)
-with open("../losses/D2_TrainRealLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D2_TrainRealLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_real_losses_tr2, f)
-with open("../losses/D2_TrainFakeLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D2_TrainFakeLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_fake_losses_tr2, f)
-with open("../losses/D2_ValRealLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D2_ValRealLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_real_losses_val2, f)
-with open("../losses/D2_ValFakeLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/D2_ValFakeLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(disc_fake_losses_val2, f)
-with open("../losses/GenTotal_Train_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/GenTotal_Train_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gen_mae_losses_tr + gen_mae_losses_tr2, f)
-with open("../losses/GenTotal_Val_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/GenTotal_Val_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gen_mae_losses_val + gen_mae_losses_val2, f)
-with open("../losses/K1_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/K1_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(k1_train_s, f)
-with open("../losses/K1_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/K1_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(k2_train_s, f)
-with open("../losses/K2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/K2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(k1_val_s, f)
-with open("../losses/K2_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/K2_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(k2_val_s, f)
-with open("../losses/TP1_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/TP1_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(tp1_train_s, f)
-with open("../losses/TP1_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/TP1_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(tp2_train_s, f)
-with open("../losses/TP2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/TP2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(tp1_val_s, f)
-with open("../losses/TP2_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/TP2_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(tp2_val_s, f)
-with open("../losses/GAN1_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/GAN1_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gan1_train_s, f)
-with open("../losses/GAN1_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/GAN1_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gan2_train_s, f)
-with open("../losses/GAN2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/GAN2_TrainLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gan1_val_s, f)
-with open("../losses/GAN2_ValLoss_exp_" + str(opt.exp), "wb") as f:
+with open("/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/losses/GAN2_ValLoss_exp_" + str(opt.exp), "wb") as f:
     pickle.dump(gan2_val_s, f)
 
 print(f"Training Complete for experiment {opt.exp}!")

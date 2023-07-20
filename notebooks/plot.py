@@ -39,7 +39,7 @@ def plot(loss, title, losses):
     plt.xlabel("# epoch")
     plt.ylabel(loss)
     plt.title(title)
-    plt.savefig('/Shared/EvoGraphNet/plots/' + title + '.png')
+    plt.savefig('/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/plots' + title + '.png')
     plt.close()
 
 # COMMAND ----------
@@ -51,7 +51,7 @@ def plot_matrix(out, fold, sample, epoch, strategy):
     plt.imshow(out)
     title = "Generator Output, Epoch = " + str(epoch) + " Fold = " + str(fold) + " Strategy = " + strategy
     plt.title(title)
-    plt.savefig('/Shared/EvoGraphNet/plots/' + str(fold) + 'Gen_' + str(sample) + '_' + str(epoch) + '.png')
+    plt.savefig('/dbfs/mnt/ml-dev-sandbox/data/hls/dpm_dl/evographnet/plots' + str(fold) + 'Gen_' + str(sample) + '_' + str(epoch) + '.png')
     plt.close()        
 
 
